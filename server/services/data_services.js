@@ -2,25 +2,32 @@ const Articles = require("../Model/Articles");
 const Article = require("../Model/Articles");
 
 const getYearsFilter = (start_year_range, end_year_range) => {
+  console.log(start_year_range, end_year_range);
   return {
-    $or: [
+    $and: [
       {
-        start_year: {
-          $gte: start_year_range.start,
-          $lte: start_year_range.end,
-        },
-      },
-      { start_year: null },
-    ],
-    $or: [
-      {
-        end_year: {
-          $gte: end_year_range.start,
-          $lte: end_year_range.end,
-        },
+        $or: [
+          {
+            end_year: {
+              $gte: end_year_range.start,
+              $lte: end_year_range.end,
+            },
+          },
+          {
+            end_year: null,
+          },
+        ],
       },
       {
-        end_year: null,
+        $or: [
+          {
+            start_year: {
+              $gte: start_year_range.start,
+              $lte: start_year_range.end,
+            },
+          },
+          { start_year: null },
+        ],
       },
     ],
   };

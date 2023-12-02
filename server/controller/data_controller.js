@@ -11,20 +11,13 @@ const {
   getArticlesIncreased,
 } = require("../services/data_services");
 
-const splitRange = (range) => {
-  const ranges = range.split("-");
-  return {
-    start: Number(ranges[0]),
-    end: Number(ranges[1]),
-  };
-};
+
 
 const statistics = async (req, res) => {
   try {
     let { start_year_range, end_year_range } = req.query;
 
-    start_year_range = splitRange(start_year_range);
-    end_year_range = splitRange(end_year_range);
+    
 
     console.log(start_year_range, end_year_range);
     const categories = ["country", "topic", "sector", "source"];

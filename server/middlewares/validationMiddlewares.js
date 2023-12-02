@@ -1,6 +1,12 @@
 const categories = ["country", "topic", "sector", "source", "region", "pestle"];
 const values = ["impact", "intensity", "relevance", "likelihood"];
-
+const splitRange = (range) => {
+  const ranges = range.split("-");
+  return {
+    start: Number(ranges[0]),
+    end: Number(ranges[1]),
+  };
+};
 const validateYearRanges = (req, res, next) => {
   const { start_year_range, end_year_range } = req.query;
   if (!start_year_range || !end_year_range) {
@@ -9,6 +15,8 @@ const validateYearRanges = (req, res, next) => {
         "Request should contain start_year_range and end_year_range in the following format: ?start_year_range=2016-2020&end_year_range=2016-2018",
     });
   }
+  req.query.start_year_range = splitRange(start_year_range);
+  req.query.end_year_range = splitRange(end_year_range);
   next();
 };
 
