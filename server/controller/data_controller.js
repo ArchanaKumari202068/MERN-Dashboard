@@ -6,67 +6,152 @@ const {
   getBarGraph,
   getLineGraph,
   getRadarGraph,
-  getscatterGraph
+  getscatterGraph,
+  getAllCategoryNames,
 } = require("../services/data_services");
 
+const splitRange = (range) => {
+  const ranges = range.split("-");
+  return {
+    start: Number(ranges[0]),
+    end: Number(ranges[1]),
+  };
+};
+
 const statistics = async (req, res) => {
-  const categories = ["country", "topic", "sector", "source"];
+  try {
+    let { start_year_range, end_year_range } = req.query;
 
-  const data = {};
+    start_year_range = splitRange(start_year_range);
+    end_year_range = splitRange(end_year_range);
 
-  for (let i = 0; i < categories.length; i++) {
-    const response = await statisticService(categories[i]);
-    data[categories[i]] = response[0]?.totalCount;
+    console.log(start_year_range, end_year_range);
+    const categories = ["country", "topic", "sector", "source"];
+
+    const data = {};
+
+    for (let i = 0; i < categories.length; i++) {
+      const response = await statisticService(
+        categories[i],
+        start_year_range,
+        end_year_range
+      );
+      data[categories[i]] = response[0]?.totalCount;
+    }
+
+    data["article"] = await getArticlesCount(start_year_range, end_year_range);
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
   }
-
-  data["article"] = await getArticlesCount();
-
-  res.send({ data });
 };
 
-const filterByYr = async (req, res) => {
-  const year = ["start_year", "end_year"];
-  const yearAll = {};
-  for (let i = 0; i < year.length; i++) {
-    const response = await getYearByFilter(year[i]);
-    // console.log(year[i],getYear)
-    console.log()
-    yearAll[year[i]] = {
-      minyear: response[0]?.minYear,
-      maxYear: response[0]?.maxYear,
-    };
-    console.log("get year", yearAll);
+const getYearRanges = async (req, res) => {
+  try {
+    const year = ["start_year", "end_year"];
+    const yearAll = {};
+    for (let i = 0; i < year.length; i++) {
+      const response = await getYearByFilter(year[i]);
+      yearAll[year[i]] = {
+        minyear: response[0]?.minYear,
+        maxYear: response[0]?.maxYear,
+      };
+    }
+    res.json(yearAll);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
   }
-
-  res.send("test");
 };
 
+const bar = async (req, res) => {
+  try {
+    const { category, value, start_year_range, end_year_range } = req.query;
 
-const bar =async(req,res)=>{
-    const {category,value} = req.query;
-    const bar = await getBarGraph(category,value)
+    const bar = await getBarGraph(
+      category,
+      value,
+      start_year_range,
+      end_year_range
+    );
 
-    res.send(bar)
-}
+    res.json(bar);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
-const line = async(req,res)=>{
-    const line = await getLineGraph()
-    res.send(line)
-}
+const line = async (req, res) => {
+  try {
+    const { category, value, start_year_range, end_year_range } = req.query;
 
-const radar = async(req,res)=>{
-    const radar = await getRadarGraph()
-    res.send(radar)
-}
+    const categoryNames = await getAllCategoryNames(category);
+    let data = {};
+    await Promise.all(
+      categoryNames.map(async (category_val) => {
+        data[category_val] = await getLineGraph(
+          category,
+          category_val,
+          value,
+          start_year_range,
+          end_year_range
+        );
+      })
+    );
 
-const scatter = async(req,res)=>{
-    // const categories = ["country", "topic", "sector", "source"];
-    // for (let i = 0; i < categories.length; i++) {
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
-        const scatter = await getscatterGraph(xvalue,yvalue,categories)
-        const {xvalue,yvalue,categories} = req.query;
-    // }
-    res.send(scatter)
+const radar = async (req, res) => {
+  try {
+    const { category, start_year_range, end_year_range } = req.query;
+    const radar = await getRadarGraph(
+      category,
+      start_year_range,
+      end_year_range
+    );
+    res.send(radar);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
-}
-module.exports = { statistics, filterByYr,bar,line ,radar,scatter};
+const scatter = async (req, res) => {
+  try {
+    const { xvalue, yvalue, category, start_year_range, end_year_range } =
+      req.query;
+    const scatter = await getscatterGraph(
+      xvalue,
+      yvalue,
+      category,
+      start_year_range,
+      end_year_range
+    );
+    res.send(scatter);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+module.exports = {
+  statistics,
+  getYearRanges,
+  bar,
+  line,
+  radar,
+  scatter,
+};
