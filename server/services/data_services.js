@@ -178,6 +178,70 @@ const getscatterGraph = async (
   ]);
   return impactVsIntensity;
 };
+
+const getArticlesIncreased = async (category, currentYear) => {
+  const previousYearsQuery = [
+    {
+      $project: {
+        published_year: { $year: "$published" },
+        [category]: 1,
+      },
+    },
+    {
+      $match: {
+        published_year: { $lt: currentYear },
+      },
+    },
+
+    {
+      $group: {
+        _id: `$${category}`,
+        countPrevious: { $sum: 1 },
+      },
+    },
+  ];
+
+  const currentYearQuery = [
+    {
+      $project: {
+        published_year: { $year: "$published" },
+        [category]: 1,
+      },
+    },
+    {
+      $match: {
+        published_year: currentYear,
+      },
+    },
+    {
+      $group: {
+        _id: `$${category}`,
+        countCurrent: { $sum: 1 },
+      },
+    },
+  ];
+
+  const resultPreviousYears = await Article.aggregate(previousYearsQuery);
+  const resultCurrentYear = await Article.aggregate(currentYearQuery);
+
+  const percentageIncrease = resultCurrentYear.map((currentYearData) => {
+    const previousYearData = resultPreviousYears.find(
+      (prevYearData) => prevYearData._id === currentYearData._id
+    );
+    const countPrevious = previousYearData ? previousYearData.countPrevious : 0;
+    const countCurrent = currentYearData.countCurrent;
+    const percentageChange =
+      ((countCurrent - countPrevious) / (countCurrent + countPrevious)) * 100;
+
+    return {
+      country: currentYearData._id,
+      countCurrent,
+      countPrevious,
+      percentageIncrease: percentageChange,
+    };
+  });
+  return percentageIncrease;
+};
 module.exports = {
   statisticService,
   getArticlesCount,
@@ -187,4 +251,5 @@ module.exports = {
   getRadarGraph,
   getscatterGraph,
   getAllCategoryNames,
+  getArticlesIncreased,
 };

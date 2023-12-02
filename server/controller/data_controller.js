@@ -8,6 +8,7 @@ const {
   getRadarGraph,
   getscatterGraph,
   getAllCategoryNames,
+  getArticlesIncreased,
 } = require("../services/data_services");
 
 const splitRange = (range) => {
@@ -121,7 +122,7 @@ const radar = async (req, res) => {
       start_year_range,
       end_year_range
     );
-    res.send(radar);
+    res.json(radar);
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -140,13 +141,29 @@ const scatter = async (req, res) => {
       start_year_range,
       end_year_range
     );
-    res.send(scatter);
+    res.json(scatter);
   } catch (error) {
     res.status(500).json({
       message: error.message,
     });
   }
 };
+
+const articlesIncreased = async (req, res) => {
+  try {
+    let { category, currentYear } = req.query;
+    if (!currentYear) {
+      currentYear = 2017;
+    }
+    const response = await getArticlesIncreased(category, currentYear);
+    res.json(response);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   statistics,
   getYearRanges,
@@ -154,4 +171,5 @@ module.exports = {
   line,
   radar,
   scatter,
+  articlesIncreased,
 };

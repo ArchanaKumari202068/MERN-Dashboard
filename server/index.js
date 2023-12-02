@@ -7,6 +7,7 @@ const {
   line,
   radar,
   scatter,
+  articlesIncreased,
 } = require("./controller/data_controller");
 
 const {
@@ -35,7 +36,7 @@ app.get("/statistics", validateYearRanges, statistics);
 app.get("/year-ranges", getYearRanges);
 app.get("/bar", validateCategories, validateValues, validateYearRanges, bar);
 app.get("/line", validateCategories, validateValues, validateYearRanges, line);
-// app.get('/analyzeByImpactInc',analyzeByImpactInc)
+app.get("/articles-increased", articlesIncreased);
 app.get("/radar", validateCategories, validateYearRanges, radar);
 app.get(
   "/scatter",
