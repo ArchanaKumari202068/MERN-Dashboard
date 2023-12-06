@@ -1,0 +1,11 @@
+.Card{
+    height: 300px;
+    width: 250px;
+    border: 2px solid blue;
+    
+}
+
+.card_image img{
+    height: 260px;
+    width: 250px;
+}

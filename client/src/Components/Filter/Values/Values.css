@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+.Values{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+}
+
+.Values_container{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+    gap: 40px;
+}
+
+
+.values_part{
+    height: 100px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    text-align: center;
+    align-items: center;
+   
+
+}
+
+.values_icon{
+    height: 40px;
+    font-size: 25px;
+    width: 35px;
+    /* border: 2px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #AAACB1;
+
+}
