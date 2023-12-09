@@ -2,3 +2,22 @@
   padding: 10px 20px;  
   /* border: 2px solid black; */
 }
+
+.filter_dropdown{
+  display: flex;
+  flex-direction: row;
+  /* border: 2px solid green; */
+  justify-content: space-between;
+  
+}
+.dropdown{
+  color: #7367F0;
+  font-size: 30px;
+  /* border: 2px solid black; */
+  
+}
+.drop_content{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

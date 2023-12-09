@@ -1,5 +1,6 @@
 import React from 'react';
-import Filter from '../src/Components/Filter/Filter'
+import Filter from '../src/Components/Filter/Filter';
+import Statistics from './Components/Statistics/Statistics';
 import './App.css';
 
 function App() {
@@ -10,8 +11,10 @@ function App() {
          <div className='filter_section_part'>
             <Filter/>
          </div>
-        
       </div>
+      <div className='Statistics_section'>
+          <Statistics/>
+         </div>
 
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Values.css";
 import { FaAnchor } from "react-icons/fa";
 import { FaBalanceScale } from "react-icons/fa";
@@ -30,9 +30,16 @@ let values =[
   
   ]
 
-function Values() {
+function Values({selectedValue,setSelectedValue}) {
+
+    
+
+
+    
+
     return ( 
         <>
+        <div className="value_main">
         <div className="Values">
             <p>Values</p>
         </div>
@@ -40,12 +47,16 @@ function Values() {
            {
             values.map((el)=>
             {
-                return <div className="values_part">
-                   <p className="values_icon">{el.icon}</p>
-                   <p>{el.name}</p>
+                return <div className={`value_part ${selectedValue===el.name?'active':''}`} onClick={()=>{setSelectedValue(el.name)}}>
+                   <div className="value_content">
+                       <p className="values_icon">{el.icon}</p>
+                       <p className="values_name">{el.name}</p>
+                   </div>
+
                 </div>
             })
            }
+        </div>
         </div>
         </>
      );

@@ -4,7 +4,7 @@ import './BarGraph.css';
 
 function BarGraph() {
     return ( 
-        <div className="BarGraph"> 
+        <div className="BarGraph_main"> 
 
         </div>
      );
