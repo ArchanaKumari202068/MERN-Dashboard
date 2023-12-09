@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nokora:wght@100;300;400;700;900&display=swap');
+
+.Table {
+    width: 30%;
+    min-height: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    padding: 3%;
+}
+
+.Table p:nth-child(1) {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 2em;
+}

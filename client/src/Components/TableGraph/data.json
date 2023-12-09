@@ -1,0 +1,22 @@
+[
+    {
+        "category":"India",
+        "value":1234,
+        "increment":45
+    },
+    {
+        "category":"Germany",
+        "value":1234,
+        "increment":45
+    },
+    {
+        "category":"UK",
+        "value":1234,
+        "increment":-15
+    },
+    {
+        "category":"USA",
+        "value":1234,
+        "increment":-45
+    }
+]
