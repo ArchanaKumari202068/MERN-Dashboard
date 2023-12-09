@@ -1,7 +1,6 @@
 .horizontal-slider {
-  width: 100%;
-  height: fit-content;
-  margin: auto;
+  /* width: 100%; */
+  min-height: 60px;
   position: relative;
 }
 
@@ -14,6 +13,7 @@
   border-radius: 100%;
   display: block;
   box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+  border-radius: 8px;
 }
 
 .example-thumb.active {
@@ -48,8 +48,8 @@
 }
 
 .example-mark {
-  width: 8px;
-  height: 8px;
+  /* width: 8px;
+  height: 8px; */
   /* border: 2px solid rgb(0, 0, 0); */
   background-color: #7367f0;
   cursor: pointer;
@@ -66,4 +66,20 @@
   right: 10px;
   /* border: 2px solid black; */
   font-size: 10px;
+}
+
+.min-max-years {
+  font-size: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+.min-max-years p {
+  position: absolute;
+  font-weight: 500;
+}
+.min-max-years p:nth-child(1) {
+  left: 20px;
+}
+.min-max-years p:nth-child(2) {
+  right: 20px;
 }

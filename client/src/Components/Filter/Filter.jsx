@@ -4,12 +4,13 @@ import Categories from "./Categories/Categories";
 import Values from "./Values/Values";
 import { useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
-
+import MultiRangeSlider from "../MultiRangeSlider/MultiRangeSlider";
 function Filter() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Impact");
   const [selectedCategory, setSelectedCategory] = useState("Countries");
-
+  const [startYearValues, setStartYearValues] = useState([2016, 2040]);
+  const [endYearValues, setEndYearValues] = useState([2016, 2040]);
   return (
     <div className="Filter">
       <div className="Filter_desc" onClick={() => setIsOpen(!isOpen)}>
@@ -36,6 +37,30 @@ function Filter() {
               selectedValue={selectedValue}
               setSelectedValue={setSelectedValue}
             />
+          </div>
+          <div className="sliders">
+            <div className="slider-container">
+              <p className="slider-heading">Start Year</p>
+              <div className="multirange-slider">
+                <MultiRangeSlider
+                  minYear={2016}
+                  maxYear={2200}
+                  values={startYearValues}
+                  setValues={setStartYearValues}
+                />
+              </div>
+            </div>
+            <div className="slider-container">
+              <p className="slider-heading">End Year</p>
+              <div className="multirange-slider">
+                <MultiRangeSlider
+                  minYear={2016}
+                  maxYear={2080}
+                  values={endYearValues}
+                  setValues={setEndYearValues}
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}

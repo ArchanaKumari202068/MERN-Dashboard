@@ -1,69 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-
-.value_main{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.Values{
-    font-size: 20px;
-    font-weight: 700;
-    font-family: 'Inter', sans-serif;
+.value_main {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.Values_container{
-    display: flex;
-    flex-direction: row;
-    /* border: 2px solid black; */
-    /* justify-content: space-between; */
-    gap: 60px;
+.Values_container {
+  display: flex;
+  flex-direction: row;
+  /* border: 2px solid black; */
+  /* justify-content: space-between; */
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
-
-.value_part{
-    height: 100px;
-    width: 100px;
-    border: 2px dashed #726F7B;
-    cursor: pointer;
-    border-radius: 5px;
-   
+.value_part {
+  height: 90px;
+  width: 90px;
+  border: 2px dashed #726f7b;
+  cursor: pointer;
+  border-radius: 5px;
 }
-.value_content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    height: 100%;
-    /* border: 1px solid black; */
+.value_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+  /* border: 1px solid black; */
 }
-.value_part.active{
-    border: 2px solid #7367F0;
- }
-
-.values_icon{
-    height: 35px;
-    font-size: 20px;
-    width: 35px;
-    /* border: 2px solid blue; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #D9D9D9;
-    color:  #AAACB1;
-    border-radius: 5px;
-
-}
-.value_part.active .values_icon{
-    background: #E8E6FC;
-   color: #7367F0;
+.value_part.active {
+  border: 2px solid #7367f0;
 }
 
-.value_name{
-    color: #626364;
- }
- .value_part.active .values_name{
-   color: #7367F0;
+.values_icon {
+  height: 35px;
+  font-size: 18px;
+  width: 35px;
+  /* border: 2px solid blue; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d9d9d9;
+  color: #aaacb1;
+  border-radius: 5px;
+}
+.value_part.active .values_icon {
+  background: #e8e6fc;
+  color: #7367f0;
 }
 
+.values_name {
+  color: #626364;
+  font-size: 14px;
+}
+.value_part.active .values_name {
+  color: #7367f0;
+}

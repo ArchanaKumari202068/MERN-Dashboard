@@ -2,6 +2,9 @@
 
 .App {
   padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .heading {
   text-align: center;
@@ -14,12 +17,12 @@
 .filter_section {
   position: sticky;
   top: 0px;
-  padding: 10px 0px;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(1px);
+  padding-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }
 .filter_section_part {
-  background-color: white;
+  /* background-color: white; */
   border-radius: 10px;
   border: 1px solid #2b2f3d;
 }

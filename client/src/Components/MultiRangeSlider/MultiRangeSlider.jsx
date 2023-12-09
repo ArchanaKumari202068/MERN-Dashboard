@@ -17,6 +17,10 @@ const range = (start, end, step = 1) => {
 const MultiRangeSlider = ({ minYear, maxYear, values, setValues }) => {
   return (
     <>
+      <div className="min-max-years">
+        <p>{minYear}</p>
+        <p>{maxYear}</p>
+      </div>
       <ReactSlider
         min={minYear}
         max={maxYear}
