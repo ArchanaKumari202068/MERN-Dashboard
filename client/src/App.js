@@ -1,10 +1,11 @@
-import React from "react";
+import React ,{ useState } from "react";
 import Filter from "../src/Components/Filter/Filter";
 import Statistics from "./Components/Statistics/Statistics";
 import "./App.css";
 import LineGraph from "./Components/LineGraph/LineGraph";
 import RadarGraph from "./Components/RadarGraph/RadarGraph"
 import TableGraph from "./Components/TableGraph/TableGraph";
+import ScatterGraph from "./Components/ScatterGraph/ScatterGraph";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         <TableGraph/>
         <RadarGraph />
       </div>
+      <ScatterGraph/>
     </div>
   );
 }

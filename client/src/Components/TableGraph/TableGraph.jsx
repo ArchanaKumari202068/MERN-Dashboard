@@ -6,7 +6,7 @@ const TableGraph = () => {
   return (
     <>
       <div className="Table">
-        <p>Impact - Countries</p>
+        <p className="table_heading">Impact - Countries</p>
         <p>Analyze by how much impact increased this year</p>
 
         <div className="table_content_container">

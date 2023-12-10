@@ -6,6 +6,9 @@
     border:1px solid #AAACB1;
     justify-content: center;
     align-items: center;
+    border-radius: 4px;
+    gap: 15px;
+    padding: 0 7px ;
 }
 .reuseTableBox p:nth-child(1){
     width: 40%;
@@ -21,4 +24,13 @@
     width: 30%;
     display: flex;
     justify-content: flex-end;
+}
+.incArrowUp{
+    color: #28C76F;
+}
+.decArrowdDown{
+    color:#EB6163 ;
+}
+.increamentValue{
+    font-size: 14px;
 }

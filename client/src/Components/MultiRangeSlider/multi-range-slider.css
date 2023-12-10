@@ -1,0 +1,85 @@
+.horizontal-slider {
+  /* width: 100%; */
+  min-height: 60px;
+  position: relative;
+}
+
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  background: #ffffff;
+  border: 3px solid #7367f0;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+  border-radius: 8px;
+}
+
+.example-thumb.active {
+  /* background-color: grey; */
+}
+
+.example-track {
+  position: relative;
+  /* background: #E8E6FC; */
+}
+.example-track.example-track-0 {
+  background: #e8e6fc;
+}
+.example-track.example-track-1 {
+  background: #7367f0;
+}
+.example-track.example-track-2 {
+  background: #e8e6fc;
+}
+
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 4px;
+}
+
+.horizontal-slider .example-thumb {
+  top: 17px;
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
+}
+
+.example-mark {
+  /* width: 8px;
+  height: 8px; */
+  /* border: 2px solid rgb(0, 0, 0); */
+  background-color: #7367f0;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  top: 18px;
+  /* vertical-align: middle; */
+  /* margin: 0px calc(19px); */
+  /* bottom: calc(50% - 6px); */
+}
+.example-thumb span {
+  position: relative;
+  top: 2px;
+  right: 10px;
+  /* border: 2px solid black; */
+  font-size: 10px;
+}
+
+.min-max-years {
+  font-size: 12px;
+  width: 100%;
+  margin-top: 10px;
+}
+.min-max-years p {
+  position: absolute;
+  font-weight: 500;
+}
+.min-max-years p:nth-child(1) {
+  left: 20px;
+}
+.min-max-years p:nth-child(2) {
+  right: 20px;
+}

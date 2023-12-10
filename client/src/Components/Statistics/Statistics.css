@@ -1,120 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-.Statistics_main{
-    padding: 20px;
-    border: 2px solid blueviolet;
+.Statistics_main {
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #2b2f3d;
 }
 
-
-.Statistics_heading{
-    font-size: 24px;
-    font-weight: 500;
-    color: #000000;
-    font-family: 'Inter', sans-serif;
-
-}
-.Statistics{
-    display: flex;
-    flex-direction: row;
-    gap: 70px;
-}
-.Statistics_container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 150px;
-    width: 150px;
-    justify-content: center;
-    gap: 15px;
-    /* border: 2px solid green; */
-}
-.Statistics_icon_news{
-  color: #7367F0;
-  background-color: #E8E6FC; 
-  height: 50px;
-  width: 50px;
-  /* border: 2px solid green; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center; 
-  border-radius: 50%;
-}
-.Statistics_container_right{
-   display: flex;
-   flex-direction: column;
-}
-.Statistics_container_right1{
-   font-size: 24px;
-   font-weight: 500;
-    color: #000000;
-    font-family: 'Inter', sans-serif;
-}
-.Statistics_container_right2{
-  font-size: 16px;
+.Statistics_heading {
+  font-size: 20px;
   font-weight: 500;
-  color: #726F7B;
-  font-family: 'Inter', sans-serif;
 }
-
-.Statistics_icon_openbook{
-   
-  color: #28C76F;
-  background-color: #DCF6E8; 
+.Statistics {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-top: 15px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.Statistics_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 150px;
+  justify-content: center;
+  gap: 15px;
+  /* border: 2px solid green; */
+}
+.Statistics_icon_news {
+  color: #7367f0;
+  background-color: #e8e6fc;
   height: 50px;
   width: 50px;
   /* border: 2px solid green; */
-  text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  border-radius: 50%;
+}
+.Statistics_container_right {
+  display: flex;
+  flex-direction: column;
+}
+.Statistics_container_right1 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  font-family: "Inter", sans-serif;
+}
+.Statistics_container_right2 {
+  font-size: 12px;
+  font-weight: 500;
+  color: #726f7b;
+  font-family: "Inter", sans-serif;
+}
+
+.stat_icon {
+  font-size: 20px;
+}
+.stat_icon_container {
+  height: 50px;
+  width: 50px;
+  text-align: center;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.Statistics_icon_brief{
-
-    color: #FF9F43;
-    background-color: #FFEFE1; 
-    height: 50px;
-    width: 50px;
-    /* border: 2px solid green; */
-    text-align: center; 
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.Statistics_icon_openbook {
+  color: #28c76f;
+  background-color: #dcf6e8;
 }
-.Statistics_icon_book{
-
-    color: #EB6163;
-    background-color: #FBE3E4; 
-    height: 50px;
-    width: 50px;
-    /* border: 2px solid green; */
-    text-align: center; 
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.Statistics_icon_brief {
+  color: #ff9f43;
+  background-color: #ffefe1;
 }
-.Statistics_icon_globe{
-
-    color: #AAACB1;
-    background-color: #F1F1F2; 
-    height: 50px;
-    width: 50px;
-    /* border: 2px solid green; */
-    text-align: center; 
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.Statistics_icon_book {
+  color: #eb6163;
+  background-color: #fbe3e4;
 }
-
-
-
+.Statistics_icon_globe {
+  color: #aaacb1;
+  background-color: #f1f1f2;
+}
