@@ -10,6 +10,7 @@ import BarGraph from "./Components/BarGraph/BarGraph";
 import { InfoProvider } from "./context/InfoContext";
 
 function App() {
+
   return (
     <InfoProvider>
       <div className="App">

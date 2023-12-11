@@ -17,8 +17,6 @@ const statistics = async (req, res) => {
   try {
     let { start_year_range, end_year_range } = req.query;
 
-    
-
     console.log(start_year_range, end_year_range);
     const categories = ["country", "topic", "sector", "source"];
 

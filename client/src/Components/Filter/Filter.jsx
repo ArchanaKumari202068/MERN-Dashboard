@@ -7,8 +7,18 @@ import MultiRangeSlider from "../MultiRangeSlider/MultiRangeSlider";
 import { useInfoContext } from "../../context/InfoContext";
 
 import api from "../../api/api";
+import { capitalizeFirstLetter } from "../utils";
 function Filter() {
-  const [yearRange, setYearRange] = useState();
+  const [yearRange, setYearRange] = useState({
+    start_year:{
+      minyear: 0,
+      maxYear: 0
+    },
+    end_year:{
+      minyear: 0,
+      maxYear: 0
+    }
+  });
   const [isOpen, setIsOpen] = useState(false);
   const {
     category,
@@ -42,6 +52,7 @@ function Filter() {
         <h3>Filters</h3>
         <div className="filter_dropdown">
           <p>Analyze by difference categories and values</p>
+          <p>category: {capitalizeFirstLetter(category)} value: {capitalizeFirstLetter(value)}</p>
           <div className="dropdown">
             <RiArrowDropDownLine
               className={`down-icon ${isOpen ? "active" : ""}`}

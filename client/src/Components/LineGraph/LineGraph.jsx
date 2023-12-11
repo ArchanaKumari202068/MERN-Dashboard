@@ -1,37 +1,45 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./LineGraph.css";
 import { Chart, defaults, scales } from "chart.js/auto";
 import { Line } from "react-chartjs-2";
-import revenueData from "./Data/revenueData.json";
+// import revenueData from "./Data/revenueData.json";
+import api from "../../api/api";
+import { useInfoContext } from "../../context/InfoContext";
+import { capitalizeFirstLetter, range } from "../utils";
 defaults.responsive = true;
 // defaults.maintainAspectRatio = false;
 Chart.defaults.font.size = 14;
 const LineGraph = () => {
+  const [lineGraphData, setLineGraph] = useState([]);
+  const { category, value, startYear, endyear } = useInfoContext();
+  const getLineGraph = async () => {
+    try {
+      const getGraph = await api.get(
+        `/line?category=${category}&value=${value}&start_year_range=${startYear[0]}-${startYear[1]}&end_year_range=${endyear[0]}-${endyear[1]}` 
+      );
+      console.log("get line Graph",getGraph)
+      setLineGraph(getGraph.data)
+    } catch (err) {
+      console.log("Error in getting Line Graph",err)
+    }
+  };
+  useEffect(()=>{
+    getLineGraph()
+  },[category, value, startYear, endyear])
   return (
     <>
       <div className="LineGraph_container">
         <div className="LineGraph">
           <Line
             data={{
-              labels: revenueData.map((data) => data.label),
-              datasets: [
-                {
-                  label: "Revenue",
-                  data: revenueData.map((data) => data.revenue),
-                  borderColor: "rgba(160,68,300,0.8)",
-                  backgroundColor: "rgba(43,68,300,0.4)",
-                //   width:100,
-                  //   pointRadius: 8,
-                },
-                {
-                  label: "Cost",
-                  data: revenueData.map((data) => data.cost),
-                  borderColor: "rgba(30,180,190,0.8)",
-                  //   pointStyle: "triangle",
-                  //   pointRadius: 8,
-                  //   hoverRadius: 15,
-                },
-              ],
+              labels: range(startYear[0],startYear[1]+1),
+              datasets: lineGraphData.map((el)=>{
+                return {
+                  label: el.category,
+                  data: el.values,
+                  // backgroundColor:"rgba(43,68,300,0.4)"
+                }
+              }),
             }}
             options={{
               scales: {
@@ -66,7 +74,7 @@ const LineGraph = () => {
                 },
               },
               maintainAspectRatio: false,
-        
+
               plugins: {
                 legend: {
                   labels: {
@@ -77,11 +85,11 @@ const LineGraph = () => {
                     //   strokeStyle: ' #FF9F43',
                     lineWidth: 5,
                     pointStyle: "circle",
-                    borderRadius:50,
+                    borderRadius: 50,
 
                     // font:20,
                     //   rotation:7
-                    boxWidth: 70
+                    boxWidth: 70,
                   },
                 },
               },

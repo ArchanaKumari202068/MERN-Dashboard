@@ -1,18 +1,7 @@
 import React from "react";
 import ReactSlider from "react-slider";
 import "./multi-range-slider.css";
-
-const range = (start, end, step = 1) => {
-  let output = [];
-  if (typeof end === "undefined") {
-    end = start;
-    start = 0;
-  }
-  for (let i = start; i < end; i += step) {
-    output.push(i);
-  }
-  return output;
-};
+import {range} from '../utils'
 
 const MultiRangeSlider = ({ minYear, maxYear, values, setValues }) => {
   return (

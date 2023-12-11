@@ -1,7 +1,26 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { Scatter } from "react-chartjs-2";
 import revenueData from "./Data/RevenuData.json";
+import api from "../../api/api";
+import { useInfoContext } from "../../context/InfoContext";
+import { capitalizeFirstLetter } from "../utils";
 const ScatterGraph = () => {
+  const [scatterGraph,setscatterGraph] =useState([])
+  const {
+    category,
+    value,
+    startYear,
+    endyear,
+  } = useInfoContext();
+  const getScatterGraph = async() =>{
+    try {
+      const getGraph = await api.get(`/scatter?category=${category}&start_year_range=${startYear[0]}-${startYear[1]}&end_year_range=${endyear[0]}-${endyear[1]}`)
+      
+    } catch (err) {
+      console.log("Error in getting Scatter graph",err)
+      
+    }
+  }
   return (
     <div>
       <Scatter

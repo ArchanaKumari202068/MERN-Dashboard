@@ -14,17 +14,17 @@ let values = [
   {
     name: "Relevance",
     icon: <FaBalanceScale />,
-    value: "intensity",
+    value: "relevance",
   },
   {
     name: "Likelihood",
     icon: <FaChartLine />,
-    value: "relevance",
+    value: "likelihood",
   },
   {
     name: "Intensity",
     icon: <FaBattleNet />,
-    value: "likelihood",
+    value: "intensity",
   },
 ];
 
