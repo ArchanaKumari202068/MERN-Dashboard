@@ -1,0 +1,9 @@
+.RadarGraph_container{
+    width: 70%;
+    /* height: 50%; */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

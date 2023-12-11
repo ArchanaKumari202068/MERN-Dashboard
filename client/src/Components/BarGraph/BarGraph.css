@@ -1,3 +1,6 @@
-.BarGraph_main{
+.BarGraph_main_container{
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+    height: 600px;
+    width: 100%;
     
 }

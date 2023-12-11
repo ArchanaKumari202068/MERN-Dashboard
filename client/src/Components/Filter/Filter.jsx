@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Filter.css";
 import Categories from "./Categories/Categories";
 import Values from "./Values/Values";
-import { useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import MultiRangeSlider from "../MultiRangeSlider/MultiRangeSlider";
 import { useInfoContext } from "../../context/InfoContext";
+
+import api from "../../api/api";
 function Filter() {
+  const [yearRange, setYearRange] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const {
     category,
@@ -18,6 +20,22 @@ function Filter() {
     endyear,
     setEndYear,
   } = useInfoContext();
+
+  const getFilterYear = async () => {
+    try {
+      const getYearRange = await api.get("/year-ranges");
+      console.log(getYearRange);
+      setYearRange(getYearRange.data);
+      setStartYear([getYearRange.data.start_year.minyear,getYearRange.data.start_year.maxYear])
+      setEndYear([getYearRange.data.end_year.minyear,getYearRange.data.end_year.maxYear])
+      console.log("YearRange", yearRange);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getFilterYear();
+  }, []);
   return (
     <div className="Filter">
       <div className="Filter_desc" onClick={() => setIsOpen(!isOpen)}>
@@ -47,8 +65,8 @@ function Filter() {
               <p className="slider-heading">Start Year</p>
               <div className="multirange-slider">
                 <MultiRangeSlider
-                  minYear={2016}
-                  maxYear={2200}
+                  minYear={yearRange.start_year.minyear}
+                  maxYear={yearRange.start_year.maxYear}
                   values={startYear}
                   setValues={setStartYear}
                 />
@@ -58,8 +76,8 @@ function Filter() {
               <p className="slider-heading">End Year</p>
               <div className="multirange-slider">
                 <MultiRangeSlider
-                  minYear={2016}
-                  maxYear={2080}
+                  minYear={yearRange.end_year.minyear}
+                  maxYear={yearRange.end_year.maxYear}
                   values={endyear}
                   setValues={setEndYear}
                 />

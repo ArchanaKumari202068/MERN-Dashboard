@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const {
   statistics,
   getYearRanges,
@@ -28,6 +29,7 @@ db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log("Connected successfully");
 });
+app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hello People...");
 });

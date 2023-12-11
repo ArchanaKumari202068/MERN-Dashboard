@@ -26,3 +26,12 @@
   border-radius: 10px;
   border: 1px solid #2b2f3d;
 }
+
+
+.Radar-Table{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2%;
+  height: 80vh;
+}
