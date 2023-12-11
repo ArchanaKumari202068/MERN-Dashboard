@@ -11,8 +11,6 @@ const {
   getArticlesIncreased,
 } = require("../services/data_services");
 
-
-
 const statistics = async (req, res) => {
   try {
     let { start_year_range, end_year_range } = req.query;
@@ -84,16 +82,17 @@ const line = async (req, res) => {
     const { category, value, start_year_range, end_year_range } = req.query;
 
     const categoryNames = await getAllCategoryNames(category);
-    let data = {};
+    let data = [];
     await Promise.all(
       categoryNames.map(async (category_val) => {
-        data[category_val] = await getLineGraph(
+        const category_data = await getLineGraph(
           category,
           category_val,
           value,
           start_year_range,
           end_year_range
         );
+        data.push(category_data);
       })
     );
 
