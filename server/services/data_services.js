@@ -1,8 +1,20 @@
 const Articles = require("../Model/Articles");
 const Article = require("../Model/Articles");
 
+const range = (start, end, step = 1) => {
+  let output = [];
+  if (typeof end === "undefined") {
+    end = start;
+    start = 0;
+  }
+  for (let i = start; i < end; i += step) {
+    output.push(i);
+  }
+  return output;
+};
+
 const getYearsFilter = (start_year_range, end_year_range) => {
-  console.log(start_year_range, end_year_range);
+  // console.log(start_year_range, end_year_range);
   return {
     $and: [
       {
@@ -96,6 +108,16 @@ const getBarGraph = async (
 };
 // const filterByYr = async()
 
+// Helper for line graph
+const getValueByYear = (data, year) => {
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].year == year) {
+      return data[i].value;
+    }
+  }
+  return null;
+};
+
 const getLineGraph = async (
   category,
   category_value,
@@ -103,6 +125,11 @@ const getLineGraph = async (
   start_year_range,
   end_year_range
 ) => {
+  const data = {
+    category: category_value,
+    values: [],
+  };
+
   const impactByYear = await Article.aggregate([
     { $match: getYearsFilter(start_year_range, end_year_range) },
     { $match: { [category]: category_value } },
@@ -125,7 +152,14 @@ const getLineGraph = async (
       },
     },
   ]);
-  return impactByYear;
+  data.values = range(start_year_range.start, end_year_range.end + 1).map(
+    (year) => {
+      return getValueByYear(impactByYear, year);
+    }
+  );
+  // console.log("Impact By Year", impactByYear);
+  // console.log("data", data);
+  return data;
 };
 
 const getAllCategoryNames = async (category) => {
