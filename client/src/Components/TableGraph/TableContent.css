@@ -1,36 +1,36 @@
-.reuseTableBox{
-    /* border: 2px solid green; */
-    display: flex;
-    flex-direction: row;
-    height: 2.8em;
-    border:1px solid #AAACB1;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    gap: 15px;
-    padding: 0 7px ;
+.reuseTableBox {
+  /* border: 2px solid green; */
+  display: flex;
+  flex-direction: row;
+  /* height: 2.8em; */
+  border: 1px solid #aaacb1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  gap: 15px;
+  padding: 10px 7px;
 }
-.reuseTableBox p:nth-child(1){
-    width: 40%;
-    display: flex;
-    justify-content: flex-start;
+.reuseTableBox p:nth-child(1) {
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
 }
-.reuseTableBox p:nth-child(2){
-    width: 20%;
-    display: flex;
-    justify-content: flex-end;
+.reuseTableBox p:nth-child(2) {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
 }
-.tableBox{
-    width: 30%;
-    display: flex;
-    justify-content: flex-end;
+.tableBox {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
 }
-.incArrowUp{
-    color: #28C76F;
+.incArrowUp {
+  color: #28c76f;
 }
-.decArrowdDown{
-    color:#EB6163 ;
+.decArrowdDown {
+  color: #eb6163;
 }
-.increamentValue{
-    font-size: 14px;
+.increamentValue {
+  font-size: 14px;
 }

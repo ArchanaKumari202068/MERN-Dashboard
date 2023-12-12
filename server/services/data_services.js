@@ -168,7 +168,7 @@ const getAllCategoryNames = async (category) => {
 };
 
 const getRadarGraph = async (category, start_year_range, end_year_range) => {
-  const compareCountryByAllval = await Article.aggregate([
+  let compareCountryByAllval = await Article.aggregate([
     { $match: getYearsFilter(start_year_range, end_year_range) },
     {
       $group: {
@@ -192,6 +192,17 @@ const getRadarGraph = async (category, start_year_range, end_year_range) => {
       },
     },
   ]);
+
+  // console.log(compareCountryByAllval);
+  compareCountryByAllval = compareCountryByAllval.map((el) => {
+    el.impact /= 5 * 1000;
+    el.intensity /= 100 * 1000;
+    el.relevance /= 5 * 1000;
+    el.likelihood /= 5 * 1000;
+    el.frequency /= 1000;
+    return el;
+  });
+
   return compareCountryByAllval;
 };
 
@@ -202,6 +213,7 @@ const getscatterGraph = async (
   start_year_range,
   end_year_range
 ) => {
+  let data = {};
   const impactVsIntensity = await Article.aggregate([
     { $match: getYearsFilter(start_year_range, end_year_range) },
     {
@@ -217,7 +229,26 @@ const getscatterGraph = async (
       },
     },
   ]);
-  return impactVsIntensity;
+
+  impactVsIntensity.forEach((element) => {
+    let category_val = element[category];
+    if (data[category_val]) {
+      data[category_val] = [
+        ...data[category_val],
+        { x: element[xvalue], y: element[yvalue] },
+      ];
+    } else {
+      data[category_val] = [{ x: element[xvalue], y: element[yvalue] }];
+    }
+  });
+  let final_data = [];
+  for (const [key, value] of Object.entries(data)) {
+    final_data.push({
+      label: key,
+      data: value,
+    });
+  }
+  return final_data;
 };
 
 const getArticlesIncreased = async (category, currentYear) => {
@@ -275,12 +306,15 @@ const getArticlesIncreased = async (category, currentYear) => {
       ((countCurrent - countPrevious) / (countCurrent + countPrevious)) * 100;
 
     return {
-      country: currentYearData._id,
+      category: currentYearData._id,
       countCurrent,
       countPrevious,
       percentageIncrease: percentageChange,
     };
   });
+  percentageIncrease.sort(
+    (a, b) => b.percentageIncrease - a.percentageIncrease
+  );
   return percentageIncrease;
 };
 module.exports = {

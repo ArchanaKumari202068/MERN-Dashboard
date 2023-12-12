@@ -8,19 +8,14 @@ import { useInfoContext } from "../../context/InfoContext";
 import { capitalizeFirstLetter } from "../utils";
 function BarGraph() {
   const [barGraphData, setBarGraphData] = useState([]);
-  const {
-    category,
-    value,
-    startYear,
-    endyear,
-  } = useInfoContext();
+  const { category, value, startYear, endyear } = useInfoContext();
 
   const getBarGraph = async () => {
     try {
       const getGraph = await api.get(
         `/bar?category=${category}&value=${value}&start_year_range=${startYear[0]}-${startYear[1]}&end_year_range=${endyear[0]}-${endyear[1]}`
       );
-      console.log("get Bar graph data",getGraph);
+      console.log("get Bar graph data", getGraph);
       setBarGraphData(getGraph.data);
     } catch (error) {
       console.log(error);
@@ -31,7 +26,7 @@ function BarGraph() {
   }, [category, value, startYear, endyear]);
 
   return (
-    <div className="BarGraph_main_container">
+    <div className="BarGraph_main_container graph_container">
       <Bar
         data={{
           // labels:["A","B","C"],

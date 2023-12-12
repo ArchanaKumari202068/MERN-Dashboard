@@ -10,27 +10,30 @@ import BarGraph from "./Components/BarGraph/BarGraph";
 import { InfoProvider } from "./context/InfoContext";
 
 function App() {
-
   return (
     <InfoProvider>
       <div className="App">
         <p className="heading">Articles Dashboard</p>
-        <div className="filter_section">
-          <div className="filter_section_part">
-            <Filter />
+        <div className="content_container">
+          <div className="filter_section">
+            <div className="filter_section_part">
+              <Filter />
+            </div>
+          </div>
+          <div className="graphs_container">
+            <div className="Statistics_section">
+              <Statistics />
+            </div>
+            <BarGraph />
+
+            <LineGraph />
+            <div className="Radar-Table">
+              <TableGraph />
+              <RadarGraph />
+            </div>
+            <ScatterGraph />
           </div>
         </div>
-        <div className="Statistics_section">
-          <Statistics />
-        </div>
-        <BarGraph/>
-
-        <LineGraph />
-        <div className="Radar-Table">
-          <TableGraph />
-          <RadarGraph />
-        </div>
-        <ScatterGraph />
       </div>
     </InfoProvider>
   );

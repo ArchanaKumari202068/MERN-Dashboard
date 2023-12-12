@@ -1,14 +1,9 @@
-.LineGraph_container{
-    /* width: 90%; */
-    height: 600px;
-    /* border: 2px solid red; */
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    justify-content: center;
+.LineGraph_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.LineGraph{
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-    height: 600px;
-    width: 100%;
+.LineGraph {
+  height: 500px;
+  width: 100%;
 }

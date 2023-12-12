@@ -10,16 +10,16 @@ import api from "../../api/api";
 import { capitalizeFirstLetter } from "../utils";
 function Filter() {
   const [yearRange, setYearRange] = useState({
-    start_year:{
+    start_year: {
       minyear: 0,
-      maxYear: 0
+      maxYear: 0,
     },
-    end_year:{
+    end_year: {
       minyear: 0,
-      maxYear: 0
-    }
+      maxYear: 0,
+    },
   });
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const {
     category,
     setCategory,
@@ -36,8 +36,14 @@ function Filter() {
       const getYearRange = await api.get("/year-ranges");
       console.log(getYearRange);
       setYearRange(getYearRange.data);
-      setStartYear([getYearRange.data.start_year.minyear,getYearRange.data.start_year.maxYear])
-      setEndYear([getYearRange.data.end_year.minyear,getYearRange.data.end_year.maxYear])
+      setStartYear([
+        getYearRange.data.start_year.minyear,
+        getYearRange.data.start_year.maxYear,
+      ]);
+      setEndYear([
+        getYearRange.data.end_year.minyear,
+        getYearRange.data.end_year.maxYear,
+      ]);
       console.log("YearRange", yearRange);
     } catch (error) {
       console.log(error);
@@ -48,16 +54,16 @@ function Filter() {
   }, []);
   return (
     <div className="Filter">
-      <div className="Filter_desc" onClick={() => setIsOpen(!isOpen)}>
+      <div className="Filter_desc">
         <h3>Filters</h3>
         <div className="filter_dropdown">
           <p>Analyze by difference categories and values</p>
-          <p>category: {capitalizeFirstLetter(category)} value: {capitalizeFirstLetter(value)}</p>
-          <div className="dropdown">
+
+          {/* <div className="dropdown">
             <RiArrowDropDownLine
               className={`down-icon ${isOpen ? "active" : ""}`}
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {isOpen && (

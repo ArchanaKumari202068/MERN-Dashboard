@@ -15,30 +15,30 @@ const LineGraph = () => {
   const getLineGraph = async () => {
     try {
       const getGraph = await api.get(
-        `/line?category=${category}&value=${value}&start_year_range=${startYear[0]}-${startYear[1]}&end_year_range=${endyear[0]}-${endyear[1]}` 
+        `/line?category=${category}&value=${value}&start_year_range=${startYear[0]}-${startYear[1]}&end_year_range=${endyear[0]}-${endyear[1]}`
       );
-      console.log("get line Graph",getGraph)
-      setLineGraph(getGraph.data)
+      console.log("get line Graph", getGraph);
+      setLineGraph(getGraph.data);
     } catch (err) {
-      console.log("Error in getting Line Graph",err)
+      console.log("Error in getting Line Graph", err);
     }
   };
-  useEffect(()=>{
-    getLineGraph()
-  },[category, value, startYear, endyear])
+  useEffect(() => {
+    getLineGraph();
+  }, [category, value, startYear, endyear]);
   return (
     <>
-      <div className="LineGraph_container">
+      <div className="LineGraph_container graph_container">
         <div className="LineGraph">
           <Line
             data={{
-              labels: range(startYear[0],startYear[1]+1),
-              datasets: lineGraphData.map((el)=>{
+              labels: range(startYear[0], startYear[1] + 1),
+              datasets: lineGraphData.map((el) => {
                 return {
                   label: el.category,
                   data: el.values,
                   // backgroundColor:"rgba(43,68,300,0.4)"
-                }
+                };
               }),
             }}
             options={{
@@ -46,10 +46,10 @@ const LineGraph = () => {
                 x: {
                   title: {
                     display: true,
-                    text: "YEAR",
+                    text: "Year",
                     color: "black",
                     font: {
-                      size: 25,
+                      size: 20,
                       weight: 700,
                     },
                   },
@@ -60,10 +60,10 @@ const LineGraph = () => {
                 y: {
                   title: {
                     display: true,
-                    text: "Impact",
+                    text: capitalizeFirstLetter(value),
                     color: "black",
                     font: {
-                      size: 25,
+                      size: 20,
                       weight: 700,
                     },
                   },

@@ -22,19 +22,31 @@ const RadarGraph = () => {
   };
   useEffect(() => {
     getRadarGraph();
-  }, [category,startYear,endyear]);
+  }, [category, startYear, endyear]);
   return (
     <>
       <div className="RadarGraph_container">
         <Radar
           data={{
-            labels:['frequency','impact','intensity','likelihood','relevance'],
-            datasets: radarGraph.map((el)=>{
-              if (el.category == "")return {}
+            labels: [
+              "frequency",
+              "impact",
+              "intensity",
+              "likelihood",
+              "relevance",
+            ],
+            datasets: radarGraph.map((el) => {
+              if (el.category == "") return {};
               return {
-                label:el.category,
-                data:[el.frequency,el.impact,el.intensity,el.likelihood,el.relevance]
-              }
+                label: el.category,
+                data: [
+                  el.frequency * 100,
+                  el.impact * 100,
+                  el.intensity * 100,
+                  el.likelihood * 100,
+                  el.relevance * 100,
+                ],
+              };
             }),
           }}
           options={{
@@ -42,7 +54,7 @@ const RadarGraph = () => {
             plugins: {
               title: {
                 display: "true",
-                text: "Revenue Sources",
+                text: capitalizeFirstLetter(category),
                 // Alignment:end,
                 font: {
                   size: 30,
