@@ -36,14 +36,14 @@ function Filter() {
       const getYearRange = await api.get("/year-ranges");
       console.log(getYearRange);
       setYearRange(getYearRange.data);
-      setStartYear([
-        getYearRange.data.start_year.minyear,
-        getYearRange.data.start_year.maxYear,
-      ]);
-      setEndYear([
-        getYearRange.data.end_year.minyear,
-        getYearRange.data.end_year.maxYear,
-      ]);
+      // setStartYear([
+      //   getYearRange.data.start_year.minyear,
+      //   getYearRange.data.start_year.maxYear,
+      // ]);
+      // setEndYear([
+      //   getYearRange.data.end_year.minyear,
+      //   getYearRange.data.end_year.maxYear,
+      // ]);
       console.log("YearRange", yearRange);
     } catch (error) {
       console.log(error);

@@ -35,13 +35,13 @@ function BarGraph() {
             {
               label: "Count",
               data: barGraphData.map((data) => data.value),
-              backgroundColor: [
-                "rgba(43,68,300,0.4)",
-                "rgba(160,68,300,0.4)",
-                "rgba(43,180,290,0.4)",
-              ],
+              // backgroundColor: [
+              //   "rgba(43,68,300,0.4)",
+              //   "rgba(160,68,300,0.4)",
+              //   "rgba(43,180,290,0.4)",
+              // ],
               borderRadius: 5,
-              borderColor: "rgba(0,0,0,0.3)",
+              // borderColor: "rgba(0,0,0,0.3)",
               borderWidth: 2,
               base: 0,
               categoryPercentage: 0.3,
@@ -86,7 +86,7 @@ function BarGraph() {
           plugins: {
             legend: {
               labels: {
-                display: "true",
+                display: "false",
                 usePointStyle: "true",
                 //   color:'blue',
 
