@@ -9,31 +9,4 @@
   width: 100%;
 }
 
-.labels {
-  width: 1000px;
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  gap: 15px;
-}
 
-.label {
-  background-color: #e8e6fc;
-  padding: 5px 8px;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.label.active {
-  color: white;
-  background-color: #7367f0;
-}
-
-.labels::-webkit-scrollbar {
-  width: 0px;
-}
-
-.labels:hover::-webkit-scrollbar {
-  width: 100px;
-}
