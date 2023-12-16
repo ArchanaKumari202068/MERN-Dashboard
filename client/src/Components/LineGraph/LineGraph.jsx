@@ -11,6 +11,7 @@ defaults.responsive = true;
 Chart.defaults.font.size = 14;
 const LineGraph = () => {
   const [lineGraphData, setLineGraph] = useState([]);
+  const [seletedData, setSelectedData] = useState([]);
   const { category, value, startYear, endyear } = useInfoContext();
   const getLineGraph = async () => {
     try {
@@ -18,10 +19,46 @@ const LineGraph = () => {
         `/line?category=${category}&value=${value}&start_year_range=${startYear[0]}-${startYear[1]}&end_year_range=${endyear[0]}-${endyear[1]}`
       );
       console.log("get line Graph", getGraph);
-      setLineGraph(getGraph.data);
+      let allData = getGraph.data.map((el) => {
+        return { ...el, isActive: false };
+      });
+
+      let seleted = [];
+      for (let i = 0; i < 3; i++) {
+        if (i < allData.length) {
+          allData[i].isActive = true;
+          seleted.push({ label: allData[i].category, data: allData[i].values });
+        }
+      }
+      setLineGraph(allData);
+      setSelectedData(seleted);
     } catch (err) {
       console.log("Error in getting Line Graph", err);
     }
+  };
+
+  const handleLabelClick = (cat, vals, isActive) => {
+    if (isActive) {
+      const filtered = seletedData.filter((el) => {
+        return el.label != cat;
+      });
+      setSelectedData(filtered);
+    } else {
+      setSelectedData([
+        ...seletedData,
+        {
+          label: cat,
+          data: vals,
+        },
+      ]);
+    }
+    const filtered = lineGraphData.map((el) => {
+      if (el.category == cat) {
+        el.isActive = !isActive;
+      }
+      return el;
+    });
+    setLineGraph(filtered);
   };
   useEffect(() => {
     getLineGraph();
@@ -29,17 +66,33 @@ const LineGraph = () => {
   return (
     <>
       <div className="LineGraph_container graph_container">
+        <div className="labels">
+          {lineGraphData.map((el) => {
+            return (
+              <p
+                onClick={() => {
+                  handleLabelClick(el.category, el.values, el.isActive);
+                }}
+                className={`label ${el.isActive ? "active" : ""}`}
+              >
+                {el.category}
+              </p>
+            );
+          })}
+        </div>
+
         <div className="LineGraph">
           <Line
             data={{
               labels: range(startYear[0], startYear[1] + 1),
-              datasets: lineGraphData.map((el) => {
-                return {
-                  label: el.category,
-                  data: el.values,
-                  // backgroundColor:"rgba(43,68,300,0.4)"
-                };
-              }),
+              datasets: seletedData,
+              // datasets: lineGraphData.map((el) => {
+              //   return {
+              //     label: el.category,
+              //     data: el.values,
+              //     // backgroundColor:"rgba(43,68,300,0.4)"
+              //   };
+              // }),
             }}
             options={{
               scales: {
